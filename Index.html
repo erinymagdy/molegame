@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Game</title>
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Architects Daughter">
+    <style>
+         body{
+            background-color: rgb(230, 190, 46);
+
+        } 
+        .mole{
+            background-color:rgb(128,64,0);
+            border-radius: 100px;
+            height: 100%;
+            width: 10%;
+            position:absolute;
+            top:100%;
+            background-image: url(first1.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: 0 5%;
+        }
+       .left-ear{
+            background-color:rgb(128,64,0);
+            border-radius: 100px;
+            position:absolute;
+            float: left;
+            min-width: 30%;
+            padding-top: 30%;
+            z-index: -1;
+           
+            
+        }
+        .right-ear{
+            background-color:rgb(128,64,0);
+            border-radius: 100px;
+            position:absolute;
+            float: left;
+            min-width: 30%;
+            padding-top: 30%;
+            left:70%;
+            z-index: -1;
+            
+        } 
+        #mole1{
+            left: 10%;
+        }
+        #mole2{
+            left: 45%;
+        }
+        #mole3{
+            left: 80%;
+        }
+        .score{
+            font-family:Architects Daughter;
+            font-size: 5vw;
+            position: absolute;
+            right: 5%;
+            z-index: -2;
+        }
+    </style>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script>
+         jQuery(document).ready(function(){
+             
+            var score =0;
+
+            function GameOver(){
+
+                jQuery('.mole').animate({'top':'100%'},300);
+                jQuery('.score').html('GAME OVER');
+                jQuery('.score').append('<div class="try_again">TRY AGIAN </div>');
+            }
+            function start(){
+                score = 0;
+                jQuery('.score').html('Score :' + score); 
+                jQuery('.mole').animate({'top': '0%'},3000, function(){
+                    GameOver();
+                    jQuery('.try_again').click(function(){start();});
+                });
+
+                
+            }
+            jQuery('.mole').hover(function(){
+
+                jQuery(this).css('background-image','url(second20.png)');
+                jQuery(this).stop().animate({'top':'100%'},300,function(){
+
+                    score = score - (-1);
+                    jQuery('.score').html('Score :' + score);
+                    jQuery(this).css('background-image','url(first1.png)');
+                    jQuery(this).animate({'top': '0%'},3000);
+                    
+                });
+            });
+            start();
+
+
+         });
+     </script>
+ 
+
+</head>
+
+<body>
+
+    <div class="score">
+        Score : 0
+    </div>
+    <div class="mole" id="mole1">
+        <div class="left-ear"></div>
+        <div class="right-ear"></div>
+    </div>
+    <div class="mole" id="mole2">
+        <div class="left-ear"></div>
+        <div class="right-ear"></div>
+    </div>
+    <div class="mole" id="mole3">
+        <div class="left-ear"></div>
+        <div class="right-ear"></div>
+    </div>
+
+
+</body>
+
+</html>
